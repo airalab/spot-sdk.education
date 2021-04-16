@@ -87,7 +87,7 @@ export default {
         }
       })
 
-      fetch('https://script.google.com/macros/s/AKfycbywsSovPvQS985MKiRwflTFMUGzGM9k2nXhUt0VP9ypXNs_R4RnzSN6X-w3hCLtksFb/exec', {
+      fetch('https://script.google.com/macros/s/AKfycbz4SOR5WYACYc9jLarvvZSh7j5tZgiaQfchdK1b0s9xF0xPX6HiU6Khlxcup5aBnvpT/exec', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: request
