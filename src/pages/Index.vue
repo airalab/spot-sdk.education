@@ -95,10 +95,10 @@ export default {
         let request = ''
 
         if(this.email){
-          request = 'email=' + encodeURIComponent(this.email) + '&tags=spot-sdk.education,request'
+          request = 'email=' + encodeURIComponent(this.email) + '&tags="spot-sdk.education, request for education"'
         }
 
-        fetch('https://script.google.com/macros/s/AKfycbwIF_Xj5zDqlN_1GjeSU8kfapvshiMpmf31VFQ7BWRM8ZG7OfoR-g9KKAXNC0DwfCw/exec', {
+        fetch('https://script.google.com/macros/s/AKfycbw_6SXyYy0agNpwCbPwBszreRy7h3Kzc4FIg6PFG0higNVJ2jsUyNdbL2Symb2AFwzP/exec', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: request
