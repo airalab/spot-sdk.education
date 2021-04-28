@@ -10,9 +10,15 @@
           <div class="part-2">
             <h1><span>Become a certified</span> Spot developer</h1>
 
-            <form class="content-narrow" @submit="handleSubmit" v-if="status!='load'" :class="'status-'+status">
+            <form class="content-narrow" @submit.prevent="onSubmit" v-if="status!='load'" :class="'status-'+status">
               <div><input type="email" placeholder="Your email" v-model="email" name="email" required/></div>
               <div><label><input type="checkbox" name="agreement" required/> Accept <a href="/privacy-agreement" target="_blank">privacy agreement</a></label></div>
+              <vue-recaptcha
+                ref="invisibleRecaptcha"
+                @verify="onVerify"
+                size="invisible"
+                :sitekey="recaptchaSitekey">
+              </vue-recaptcha>
               <div><input type="submit" value="Start" /></div>
             </form>
 
@@ -42,7 +48,7 @@
         </div>
       </div>
 
-      <video autoplay loop muted poster="/media/spot-yoga.png">
+      <video autoplay loop muted poster="/media/spot-yoga.jpg">
         <source src="/media/spot-yoga-web-3.mp4" type="video/mp4">
       </video>
     </div>
@@ -52,51 +58,56 @@
 
 <script>
 export default {
+  components: {
+      VueRecaptcha: () => import("vue-recaptcha")
+  },
+
   metaInfo: {
-    title: 'Become a certified Boston Dynamics Spot developer'
+    title: 'Become a certified Boston Dynamics Spot developer',
+    description: "test",
+    script: [
+      {
+        src: 'https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit',
+        body: true
+      }
+    ]
   },
 
   data () {
     return {
-      // errors: [],
       email: null,
-      status: 'none'
+      status: 'none',
+      recaptchaSitekey: "6LfTAb0aAAAAAL7-_cRGrV-UjP_8LbfGVySWGggr"
+      // recaptchaSitekey: "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" //test localhost
     }
   },
 
   methods: {
 
-    async handleSubmit(e) {
-      e.preventDefault()
+    onSubmit: function () {
+      this.$refs.invisibleRecaptcha.execute()
+    },
 
-      this.status = 'wait'
+    onVerify: function (response) {
+      if(response) {
+        this.status = 'wait'
 
-      let request = ''
+        let request = ''
 
-      if(this.email){
-        request = 'email=' + encodeURIComponent(this.email)
-      }
-
-      await fetch('https://ipapi.co/json/')
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(data) {
-        if(data){
-          request += '&ip=' + data.ip + '&country=' + data.country_name + '&city=' + data.city
+        if(this.email){
+          request = 'email=' + encodeURIComponent(this.email) + '&tags=spot-sdk.education,request'
         }
-      })
 
-      fetch('https://script.google.com/macros/s/AKfycbz4SOR5WYACYc9jLarvvZSh7j5tZgiaQfchdK1b0s9xF0xPX6HiU6Khlxcup5aBnvpT/exec', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: request
-      })
-      .then(() => this.status = 'load')
-      .catch(error => this.status = 'error')
+        fetch('https://script.google.com/macros/s/AKfycbwIF_Xj5zDqlN_1GjeSU8kfapvshiMpmf31VFQ7BWRM8ZG7OfoR-g9KKAXNC0DwfCw/exec', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: request
+        })
+        .then(() => this.status = 'load')
+        .catch(error => this.status = 'error')
 
+      }
     }
-
 
   }
 }
@@ -350,6 +361,11 @@ export default {
 
 
   
+  @keyframes Show {
+    to {
+      opacity: 1;
+    }
+  }
 
   .screen-video:after {
     content: "";
@@ -361,6 +377,8 @@ export default {
     z-index: 0;
     background-color: rgba(56, 71, 140, 0.3);
     backdrop-filter: blur(3px);
+    /* opacity: 0;
+    animation: Show 1s ease-in-out 0.3s forwards; */
   }
 
   .screen-video > video {
