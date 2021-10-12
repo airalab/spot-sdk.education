@@ -12,13 +12,13 @@ export default function (Vue, { router, head, isClient }) {
   Vue.component('Layout', DefaultLayout)
   Vue.component('LayoutInside', LayoutInside)
 
-  if(isClient){
-    head.script.push({
-      src: 'https://www.googletagmanager.com/gtag/js?id='+ process.env.GRIDSOME_GOOGLE_ANALYTICS_ID,
-      async: true
-    })
-    head.script.push({
-      innerHTML: "window.dataLayer = window.dataLayer || []; function gtag(){window.dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '" + process.env.GRIDSOME_GOOGLE_ANALYTICS_ID + "');"
-   })
-  }
+ 
+  head.script.push({
+    src: 'https://www.googletagmanager.com/gtag/js?id='+ process.env.GRIDSOME_GOOGLE_ANALYTICS_ID,
+    async: true
+  })
+  head.script.push({
+    innerHTML: "window.dataLayer = window.dataLayer || []; function gtag(){window.dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '" + process.env.GRIDSOME_GOOGLE_ANALYTICS_ID + "');"
+  })
+  
 }
