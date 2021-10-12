@@ -76,7 +76,7 @@ export default {
     return {
       email: null,
       status: 'none',
-      recaptchaSitekey: process.env.GRIDSOME_RECAPTCHA_SITEKEY
+      recaptchaSitekey: "6LfTAb0aAAAAAL7-_cRGrV-UjP_8LbfGVySWGggr"
       // recaptchaSitekey: "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" //test localhost
     }
   },
@@ -97,7 +97,7 @@ export default {
           request = 'email=' + encodeURIComponent(this.email) + '&tags=spot-sdk.education,request for education'
         }
 
-        fetch(process.env.GRIDSOME_FORM_SCRIPT, {
+        fetch("https://script.google.com/macros/s/AKfycbw_6SXyYy0agNpwCbPwBszreRy7h3Kzc4FIg6PFG0higNVJ2jsUyNdbL2Symb2AFwzP/exec", {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: request

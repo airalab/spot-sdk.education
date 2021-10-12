@@ -14,11 +14,11 @@ export default function (Vue, { router, head, isClient }) {
 
  
   head.script.push({
-    src: 'https://www.googletagmanager.com/gtag/js?id='+ process.env.GRIDSOME_GOOGLE_ANALYTICS_ID,
+    src: 'https://www.googletagmanager.com/gtag/js?id=5KBB3ZT',
     async: true
   })
   head.script.push({
-    innerHTML: "window.dataLayer = window.dataLayer || []; function gtag(){window.dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '" + process.env.GRIDSOME_GOOGLE_ANALYTICS_ID + "');"
+    innerHTML: "window.dataLayer = window.dataLayer || []; function gtag(){window.dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '5KBB3ZT');"
   })
   
 }
