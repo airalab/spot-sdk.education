@@ -64,7 +64,6 @@ export default {
 
   metaInfo: {
     title: 'Become a certified Boston Dynamics Spot developer',
-    description: "test",
     script: [
       {
         src: 'https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit',
@@ -77,7 +76,7 @@ export default {
     return {
       email: null,
       status: 'none',
-      recaptchaSitekey: process.env.RECAPTCHA_SITEKEY
+      recaptchaSitekey: process.env.GRIDSOME_RECAPTCHA_SITEKEY
       // recaptchaSitekey: "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" //test localhost
     }
   },
@@ -98,7 +97,7 @@ export default {
           request = 'email=' + encodeURIComponent(this.email) + '&tags=spot-sdk.education,request for education'
         }
 
-        fetch(process.env.FORM_SCRIPT, {
+        fetch(process.env.GRIDSOME_FORM_SCRIPT, {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: request
