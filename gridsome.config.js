@@ -7,5 +7,14 @@
 module.exports = {
   siteName: 'Spot Learning SDK',
   siteDescription: 'Become a certified Spot developer with educational program based on Boston Dynamics SDK.',
-  plugins: []
+  plugins: [
+    {
+      use: 'gridsome-plugin-gtm',
+      options: {
+        id: 'GTM-5KBB3ZT',
+        enabled: true,
+        debug: true
+      }
+    }
+  ]
 }
