@@ -7,6 +7,7 @@
 module.exports = {
   siteName: 'Spot Learning SDK',
   siteDescription: 'Become a certified Spot developer with educational program based on Boston Dynamics SDK.',
+  siteUrl: 'https://spot-sdk.education/',
   plugins: [
 
     // {
