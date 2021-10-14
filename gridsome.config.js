@@ -12,8 +12,7 @@ module.exports = {
     {
       use: "gridsome-plugin-google-sheets-post",
       options: {
-        // script: process.env.FORM_SCRIPT
-        script: 'AKfycbw_6SXyYy0agNpwCbPwBszreRy7h3Kzc4FIg6PFG0higNVJ2jsUyNdbL2Symb2AFwzP'
+        script: process.env.FORM_SCRIPT
       }
   }
   ]
