@@ -9,14 +9,12 @@ module.exports = {
   siteDescription: 'Become a certified Spot developer with educational program based on Boston Dynamics SDK.',
   siteUrl: 'https://spot-sdk.education/',
   plugins: [
+    {
+      use: "gridsome-plugin-google-sheets-post",
+      options: {
+        script: process.env.FORM_SCRIPT
+      }
+  }
 
-    // {
-    //     use: 'gridsome-plugin-gtag',
-    //     options: {
-    //         config: {
-    //             id: process.env.GOOGLE_ANALYTICS_ID,
-    //         },
-    //     },
-    // }
   ]
 }
