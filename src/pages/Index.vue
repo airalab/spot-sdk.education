@@ -97,13 +97,15 @@ export default {
           request = 'email=' + encodeURIComponent(this.email) + '&tags=spot-sdk.education,request for education'
         }
 
-        fetch("https://script.google.com/macros/s/AKfycbw_6SXyYy0agNpwCbPwBszreRy7h3Kzc4FIg6PFG0higNVJ2jsUyNdbL2Symb2AFwzP/exec", {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: request
-        })
-        .then(() => this.status = 'load')
-        .catch(error => this.status = 'error')
+        if (this.$PostGoogleSheets(request)){
+          const o = this
+          setTimeout(function(){
+            o.status = 'load'
+          }, 1500);
+        } else{
+          this.status = 'error'
+        }
+
 
       }
     }
@@ -532,7 +534,7 @@ export default {
   }
 
   @keyframes bounceLoader {
-    0{
+    0%{
       transform: translateY(-1rem);
     }
     50%{
