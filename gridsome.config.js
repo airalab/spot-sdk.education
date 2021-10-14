@@ -15,5 +15,6 @@ module.exports = {
         script: process.env.FORM_SCRIPT
       }
   }
+  
   ]
 }
