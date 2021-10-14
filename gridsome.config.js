@@ -14,7 +14,6 @@ module.exports = {
       options: {
         script: process.env.FORM_SCRIPT
       }
-      
   }
   ]
 }
